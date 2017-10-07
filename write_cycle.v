@@ -14,7 +14,7 @@ module write_cycle(latch, count, DE, nWE, writing, read, write, reset, clk);
     if (reset == 1) begin// high reset?
       latch <= 0;
       count <= 1;
-      DE <= 0;
+      DE <= 1;
       nWE <= 1;
       writing <= 0;
 		state <= IDLE;
@@ -39,17 +39,18 @@ module write_cycle(latch, count, DE, nWE, writing, read, write, reset, clk);
         STEP2: begin
                   count <= 0;
                   latch <= 0;
-                  DE <= 1;
+                  //DE <= 1;
                   state <= STEP3;
                 end
 
         STEP3: begin
-                  DE <= 0;
+                  //DE <= 0;
                   nWE <= 0;
                   state <= STEP4;
                 end
 
         STEP4: begin
+						//DE <= 0;
                   count <= 1;
                   nWE <= 1;
                   if (write == 1 & read == 0) begin
